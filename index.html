@@ -67,10 +67,11 @@
       function game() {
         for (let i = 0; i < 5; i++) {
           console.log(playRound())
-          console.log(win)
-          console.log(lose)
-          console.log(tie)
+          console.log('Wins: ' + win)
+          console.log('Loses: ' + lose)
+          console.log('ties: ' + tie)
         }
+        console.log(winner());
       }
 
       function winner() {
@@ -85,7 +86,6 @@
         }
       }
       game();
-      console.log(winner())
 
     </script>
   </body>
