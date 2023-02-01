@@ -5,10 +5,33 @@
     <meta charset="UTF-8">
   </head>
   <body>
+    <button id="rockBtn">Rock</button>
+    <button id="paperBtn">Paper</button>
+    <button id="scissorsBtn">Scissors</button>
+
+
     <script>
+      const rockBtn = document.querySelector('#rockBtn');
+      rockBtn.addEventListener('click', () =>  {
+        playerSelection = 'Rock'; 
+        console.log(playRound(playerSelection));
+      }); 
+
+      const paperBtn = document.querySelector('#paperBtn');
+      paperBtn.addEventListener('click', () =>  {
+        playerSelection = 'Paper'; 
+        console.log(playRound(playerSelection));
+      }); 
+
+      const scissorsBtn = document.querySelector('#scissorsBtn');
+      scissorsBtn.addEventListener('click', () =>  {
+        playerSelection = 'Scissors'; 
+        console.log(playRound(playerSelection));
+      }); 
+
       let win = 0;
       let lose = 0;
-      let tie = 0;
+      let tie = 0;  
 
       function getComputerChoice() {
         let pick = Math.random();
@@ -29,8 +52,8 @@
         return pick2;
       }
 
-      function playRound() {
-        let playerSelection = getPlayerPick();
+      function playRound(playerSelection) {
+        // let playerSelection = getPlayerPick();
         let computerSelection = getComputerChoice();
         console.log('Computer Picked: ' + computerSelection);
         console.log('Player Picked: ' + playerSelection);
@@ -64,16 +87,6 @@
         }
       }
 
-      function game() {
-        for (let i = 0; i < 5; i++) {
-          console.log(playRound())
-          console.log('Wins: ' + win)
-          console.log('Loses: ' + lose)
-          console.log('ties: ' + tie)
-        }
-        console.log(winner());
-      }
-
       function winner() {
         if (win > lose) {
           return `You win! The score: Player - ${win} // Computer - ${lose}`
@@ -85,7 +98,6 @@
           return `It's a tie! The score: Player - ${win} // Computer - ${lose}`
         }
       }
-      game();
 
     </script>
   </body>
