@@ -8,6 +8,9 @@
     <button id="rockBtn">Rock</button>
     <button id="paperBtn">Paper</button>
     <button id="scissorsBtn">Scissors</button>
+    <div id="results">
+
+    </div>
 
 
     <script>
@@ -28,6 +31,8 @@
         playerSelection = 'Scissors'; 
         console.log(playRound(playerSelection));
       }); 
+      
+      
 
       let win = 0;
       let lose = 0;
@@ -53,37 +58,65 @@
       }
 
       function playRound(playerSelection) {
-        // let playerSelection = getPlayerPick();
         let computerSelection = getComputerChoice();
-        console.log('Computer Picked: ' + computerSelection);
-        console.log('Player Picked: ' + playerSelection);
+        const displayPicks = document.querySelector('#results')
+
+        const computerPick = document.createElement('div');
+        computerPick.textContent = 'Computer Picked: ' + computerSelection;
+        
+        const playerPick = document.createElement('div');
+        playerPick.textContent = 'Player Picked: ' + playerSelection;
+
+        const winner = document.createElement('div');
+
+        displayPicks.appendChild(computerPick);
+        displayPicks.appendChild(playerPick);
+
+
+
         if (playerSelection === computerSelection) {
           tie = tie + 1
-          return 'It is a tie!';
+          winner.textContent = "It's a Tie!";
+          displayPicks.appendChild(winner);
+          return 'tie';
         }
         else if (playerSelection === 'Rock' && computerSelection === 'Paper') {
           lose = lose + 1
-          return 'You Lose! Rock loses to Paper';
+          winner.textContent = "You Lose! Rock loses to Paper";
+          displayPicks.appendChild(winner);
+          return 'lose';
+
         }
         else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
           win = win + 1
-          return 'You Win! Rock beats Scissors';
+          winner.textContent = "You Win! Rock beats Scissors";
+          displayPicks.appendChild(winner);
+          return 'win';
         }
         else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
           win = win + 1
-          return 'You Win! Paper beats Rock';
+          winner.textContent = "You Win! Paper beats Rock";
+          displayPicks.appendChild(winner);
+          return 'win';
         }
         else if (playerSelection === 'Paper' && computerSelection === 'Scissors') {
           lose = lose + 1
-          return 'You Lose! Paper loses to Scissors'
+          winner.textContent = "You Lose! Paper loses to Scissors";
+          displayPicks.appendChild(winner);
+          return 'lose';
+
         }
         else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
-          win = win+ 1
-          return 'You Win! Scissors beats Paper'
+          win = win + 1
+          winner.textContent = "You Win! Scissors beats Paper";
+          displayPicks.appendChild(winner);
+          return 'win';
         }
         else if (playerSelection === 'Scissors' && computerSelection === 'Rock') {
           lose = lose + 1
-          return 'You Lose! Scissors loses to Rock'
+          winner.textContent = "You Lose! Scissors loses to Rock";
+          displayPicks.appendChild(winner);
+          return 'lose';
         }
       }
 
