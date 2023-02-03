@@ -5,39 +5,17 @@
     <meta charset="UTF-8">
   </head>
   <body>
-    <button class="btn" id="rockBtn">Rock</button>
-    <button class="btn" id="paperBtn">Paper</button>
-    <button class="btn" id="scissorsBtn">Scissors</button>
+    <div>
+      <button class="gameBtn" id="rockBtn">Rock</button>
+      <button class="gameBtn" id="paperBtn">Paper</button>
+      <button class="gameBtn" id="scissorsBtn">Scissors</button>
+    </div>
     <div id="results">
 
     </div>
 
 
     <script>
-      const rockBtn = document.querySelector('#rockBtn');
-      rockBtn.addEventListener('click', () =>  {
-        playerSelection = 'Rock'; 
-        console.log(playRound(playerSelection));
-      }); 
-
-      const paperBtn = document.querySelector('#paperBtn');
-      paperBtn.addEventListener('click', () =>  {
-        playerSelection = 'Paper'; 
-        console.log(playRound(playerSelection));
-      }); 
-
-      const scissorsBtn = document.querySelector('#scissorsBtn');
-      scissorsBtn.addEventListener('click', () =>  {
-        playerSelection = 'Scissors'; 
-        console.log(playRound(playerSelection));
-      }); 
-      
-      const displayPicks = document.querySelector('#results')
-      const score = document.createElement('div');
-      const computerPick = document.createElement('div');
-      const winner = document.createElement('div');
-      const playerPick = document.createElement('div');
-
       let win = 0;
       let lose = 0;
       let tie = 0;  
@@ -53,12 +31,6 @@
         else {
           return 'Scissors';
         }
-      }
-
-      function getPlayerPick() {
-        let pick = prompt("Rock, Paper, or Scissors?");
-        let pick2 = pick.charAt(0).toUpperCase() + pick.slice(1).toLowerCase();
-        return pick2;
       }
 
       function playRound(playerSelection) {
@@ -130,23 +102,43 @@
           }
         }
         else {
-
           gameWinner();
         }
       }
-      
 
       function gameWinner() {
         if (win > lose) {
-          alert(`You WIN! The score: Player - ${win} // Computer - ${lose}`)
+          alert(`You WIN! The score: Player - ${win} // Computer - ${lose}`);
         }
         else if (lose > win) {
-          alert(`You LOSE! The score: Player - ${win} // Computer - ${lose}`)
-        }
-        else {
-          alert(`It's a TIE! The score: Player - ${win} // Computer - ${lose}`)
+          alert(`You LOSE! The score: Player - ${win} // Computer - ${lose}`);
         }
       }
+
+      const rockBtn = document.querySelector('#rockBtn');
+      rockBtn.addEventListener('click', () =>  {
+        playerSelection = 'Rock'; 
+        console.log(playRound(playerSelection));
+      }); 
+
+      const paperBtn = document.querySelector('#paperBtn');
+      paperBtn.addEventListener('click', () =>  {
+        playerSelection = 'Paper'; 
+        console.log(playRound(playerSelection));
+      }); 
+
+      const scissorsBtn = document.querySelector('#scissorsBtn');
+      scissorsBtn.addEventListener('click', () =>  {
+        playerSelection = 'Scissors'; 
+        console.log(playRound(playerSelection));
+      }); 
+      
+      const displayPicks = document.querySelector('#results')
+      const score = document.createElement('div');
+      const computerPick = document.createElement('div');
+      const winner = document.createElement('div');
+      const playerPick = document.createElement('div');
+      const winnerOfGame = document.createElement('div');
 
     </script>
   </body>
