@@ -24,9 +24,14 @@ margin-top: 100px;
   margin-top: 100px;
   font-size: 20px;
   border: solid black 2px;
+  background-color: lightgrey;
 }
 
 .winner {
   font-weight: bolder;
   font-size: 22px;
+}
+
+html {
+  background-color: #ADD8E6;
 }
