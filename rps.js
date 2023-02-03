@@ -120,5 +120,6 @@
       const score = document.createElement('div');
       const computerPick = document.createElement('div');
       const winner = document.createElement('div');
+      winner.classList.add('winner');
       const playerPick = document.createElement('div');
       const winnerOfGame = document.createElement('div');
