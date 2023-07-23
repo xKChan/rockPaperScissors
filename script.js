@@ -1,4 +1,4 @@
-const prompt = require('prompt-sync')();
+// const prompt = require('prompt-sync')();
 
 const NUM_GAME = 5;
 
@@ -6,15 +6,16 @@ let tie = 0;
 let win = 0;
 let lose = 0;
 
-function getPlayerChoice() {
-    while(true) {
-        let playerPick = prompt("Rock, Paper, or Scissors? ");
-        let playerPickCheck = playerPick.charAt(0).toUpperCase() + playerPick.slice(1).toLowerCase();
-        if (playerPickCheck == "Rock" || playerPickCheck == "Paper" || playerPickCheck == "Scissors") {
-            return playerPickCheck;
-        }
-    }
-}
+
+const btns = document.querySelectorAll("button");
+
+btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        let playerSelection = btn.value;
+        let computerSelection = getComputerChoice();
+        playRound(playerSelection, computerSelection);
+    });
+});
 
 function getComputerChoice() {
     let x = Math.random();
@@ -66,16 +67,18 @@ function gameWinner() {
     return;
 }
 
-function game() {
-    for (let i = 0; i < NUM_GAME; i++) {
-        const computerSelection = getComputerChoice();
-        const playerSelection = getPlayerChoice();
+// function game() {
+//     for (let i = 0; i < NUM_GAME; i++) {
+//         const computerSelection = getComputerChoice();
+//         const playerSelection = getPlayerChoice();
 
-        let score = playRound(playerSelection, computerSelection);
-        totalScore(score);
-    }
-    gameWinner();
-}
+//         let score = playRound(playerSelection, computerSelection);
+//         totalScore(score);
+//     }
+//     gameWinner();
+// }
 
 
-game();
+// game();
+
+
