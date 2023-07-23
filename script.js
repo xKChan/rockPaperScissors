@@ -8,12 +8,16 @@ let lose = 0;
 
 
 const btns = document.querySelectorAll("button");
+const gameScore = document.querySelector('.gameScore');
+
 
 btns.forEach((btn) => {
     btn.addEventListener('click', () => {
         let playerSelection = btn.value;
         let computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
+        let score = playRound(playerSelection, computerSelection);
+        totalScore(score);
+        gameWinner();
     });
 });
 
@@ -29,17 +33,31 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    console.log(`Player: ${playerSelection} // Computer: ${computerSelection}`);
+    // Clears game screen 
+    while(gameScore.firstChild) {
+        gameScore.removeChild(gameScore.lastChild);
+    }
+
+    const gamePicks = document.createElement('h2');
+    gamePicks.textContent = `Player: ${playerSelection} // Computer: ${computerSelection}`;
+    gameScore.appendChild(gamePicks);
+
     if (playerSelection == computerSelection) {
-        console.log(`It's a tie.`);
+        const gameTie = document.createElement('p');
+        gameTie.textContent = `It's a tie.`;
+        gameScore.appendChild(gameTie);
         return "tie";
     } else if ((playerSelection == "Rock" && computerSelection == "Scissors") ||
         (playerSelection == "Paper" && computerSelection == "Rock") ||
         (playerSelection == "Scissors" && computerSelection == "Paper")) {
-        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+        const gameWin = document.createElement('p');
+        gameWin.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+        gameScore.appendChild(gameWin);
         return "win";
     } else {
-        console.log(`You Lose! ${playerSelection} loses to ${computerSelection}`);
+        const gameLose = document.createElement('p');
+        gameLose.textContent = `You Lose! ${playerSelection} loses to ${computerSelection}`;
+        gameScore.appendChild(gameLose);
         return "lose";
     }
 }
@@ -52,33 +70,21 @@ function totalScore(score) {
     } else {
          tie++
     }
-    console.log(`Player Score: ${win} || Computer Score: ${lose} || Ties: ${tie}`);
+    const scoreTotal = document.createElement('p');
+    scoreTotal.textContent = `Player Score: ${win} || Computer Score: ${lose} || Ties: ${tie}`;
+    gameScore.appendChild(scoreTotal);
 }
 
 function gameWinner() {
-    if (win > lose && win >= tie) {
-        console.log("Player Wins!");
-        return;
-    } else if (lose > win && lose >= tie) {
-        console.log("Computer Wins!");
-        return;
+    if (win === 5 || lose === 5) {
+        while (gameScore.firstChild) {
+            gameScore.removeChild(gameScore.lastChild);
+        }
+
+        if (win === 5) {
+            alert(`Player Wins! The score was ${win} to ${lose} .. New Game?`);
+        } else if (lose === 5) {
+            alert(`Player Loses! The score was ${win} to ${lose} .. New Game?`);
+        }
     }
-    console.log("It's a tie! No one wins.");
-    return;
 }
-
-// function game() {
-//     for (let i = 0; i < NUM_GAME; i++) {
-//         const computerSelection = getComputerChoice();
-//         const playerSelection = getPlayerChoice();
-
-//         let score = playRound(playerSelection, computerSelection);
-//         totalScore(score);
-//     }
-//     gameWinner();
-// }
-
-
-// game();
-
-
